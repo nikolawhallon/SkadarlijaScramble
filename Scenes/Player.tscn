@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://cenr6570ntuiu"]
+
+[ext_resource type="Script" path="res://Scenes/Player.gd" id="1_0vcu3"]
+[ext_resource type="Texture2D" uid="uid://cwpxraqut7lp7" path="res://Assets/Player/player_idle_down_1.png" id="1_hoq5p"]
+[ext_resource type="Texture2D" uid="uid://bdbujvvk3mx7a" path="res://Assets/Player/player_idle_down_2.png" id="2_sxnqm"]
+[ext_resource type="Texture2D" uid="uid://co63x43xvrmvu" path="res://Assets/Player/player_idle_down_3.png" id="3_a7gqk"]
+[ext_resource type="Texture2D" uid="uid://c0oyl7sicmicd" path="res://Assets/Player/player_idle_down_4.png" id="4_nlh37"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1kno"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hoq5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_sxnqm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a7gqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nlh37")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1kxv"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_0vcu3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f1kno")
+animation = &"idle_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_n1kxv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -365
+limit_top = -301
+limit_right = 365
+limit_bottom = 301

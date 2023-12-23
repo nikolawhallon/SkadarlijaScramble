@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cenr6570ntuiu"]
+[gd_scene load_steps=30 format=3 uid="uid://cenr6570ntuiu"]
 
 [ext_resource type="Script" path="res://Scenes/Player.gd" id="1_0vcu3"]
 [ext_resource type="Texture2D" uid="uid://cwpxraqut7lp7" path="res://Assets/Player/player_idle_down_1.png" id="1_hoq5p"]
@@ -7,10 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://c0oyl7sicmicd" path="res://Assets/Player/player_idle_down_4.png" id="4_nlh37"]
 [ext_resource type="Texture2D" uid="uid://bm5upy8q5didx" path="res://Assets/Player/player_play_violin_1.png" id="6_13vrd"]
 [ext_resource type="Texture2D" uid="uid://bh34qbei2fwjm" path="res://Assets/Player/player_walk_down_1.png" id="6_oln0s"]
+[ext_resource type="Texture2D" uid="uid://c2vkgmu6peccs" path="res://Assets/Player/player_play_tamburica_1.png" id="6_osbwf"]
 [ext_resource type="Texture2D" uid="uid://dhi8kf4r2alef" path="res://Assets/Player/player_walk_down_2.png" id="7_de15u"]
+[ext_resource type="Texture2D" uid="uid://bejdfodpggv70" path="res://Assets/Player/player_play_tamburica_2.png" id="7_grg7x"]
 [ext_resource type="Texture2D" uid="uid://ctpq3ybq4v7a8" path="res://Assets/Player/player_play_violin_2.png" id="7_ogjem"]
+[ext_resource type="Texture2D" uid="uid://m7vbjkrmdqri" path="res://Assets/Player/player_play_tamburica_3.png" id="8_1tpfp"]
 [ext_resource type="Texture2D" uid="uid://cubpes03r36yv" path="res://Assets/Player/player_walk_down_3.png" id="8_6kbyq"]
 [ext_resource type="Texture2D" uid="uid://c7n2niqrfu0r7" path="res://Assets/Player/player_play_violin_3.png" id="8_ykrqd"]
+[ext_resource type="Texture2D" uid="uid://dv84onj07mfaj" path="res://Assets/Player/player_play_tamburica_4.png" id="9_ax6m2"]
 [ext_resource type="Texture2D" uid="uid://b68x0bjek7whg" path="res://Assets/Player/player_play_violin_4.png" id="9_crg7u"]
 [ext_resource type="Texture2D" uid="uid://duwvcl46mdu6j" path="res://Assets/Player/player_walk_down_4.png" id="9_rh62h"]
 [ext_resource type="Texture2D" uid="uid://7dlgd1qjw7mm" path="res://Assets/Player/player_play_violin_5.png" id="10_r7g5t"]
@@ -41,6 +45,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_osbwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_grg7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1tpfp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ax6m2")
+}],
+"loop": true,
+"name": &"play_tamburica",
 "speed": 5.0
 }, {
 "frames": [{
@@ -115,7 +136,7 @@ script = ExtResource("1_0vcu3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_f1kno")
-animation = &"play_violin"
+animation = &"play_tamburica"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 12)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c3ugsc82uesng"]
+[gd_scene load_steps=38 format=3 uid="uid://c3ugsc82uesng"]
 
 [ext_resource type="PackedScene" uid="uid://cenr6570ntuiu" path="res://Scenes/Player.tscn" id="1_i1han"]
 [ext_resource type="Texture2D" uid="uid://iqwbqfe4j6de" path="res://Assets/Background/background_and_foreground.png" id="1_lbq7t"]
@@ -6,8 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://qxhk2ipcfgud" path="res://Assets/Background/foreground.png" id="3_d3jlg"]
 [ext_resource type="PackedScene" uid="uid://e3it67q66xa1" path="res://Scenes/Table.tscn" id="4_4rqbu"]
 [ext_resource type="Texture2D" uid="uid://ylb361gjrqsx" path="res://Assets/Background/BoyBarA/boy_bar_a_1.png" id="5_8g4m1"]
+[ext_resource type="Script" path="res://Scenes/NPC.gd" id="5_p1klc"]
 [ext_resource type="Texture2D" uid="uid://dsbv0xtxjx8mx" path="res://Assets/Background/BoyBarA/boy_bar_a_2.png" id="6_e5io1"]
 [ext_resource type="Texture2D" uid="uid://ch6b3r47s6h71" path="res://Assets/UI/empty_icon.png" id="8_jjogd"]
+[ext_resource type="Texture2D" uid="uid://ch7qmwn5mtdma" path="res://Assets/UI/happiness_bar_under.png" id="9_5u3b6"]
+[ext_resource type="Texture2D" uid="uid://bpeqnlndhft2" path="res://Assets/UI/happiness_bar_progress.png" id="10_3mshq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ek03w"]
 animations = [{
@@ -120,6 +123,7 @@ position = Vector2(-165, 143)
 
 [node name="BoyBarA" type="StaticBody2D" parent="YSort"]
 position = Vector2(164, -115)
+script = ExtResource("5_p1klc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/BoyBarA"]
 sprite_frames = SubResource("SpriteFrames_ek03w")
@@ -129,6 +133,9 @@ frame_progress = 0.630368
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/BoyBarA"]
 position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_7yhjy")
+
+[node name="Timer" type="Timer" parent="YSort/BoyBarA"]
+one_shot = true
 
 [node name="Foreground" type="Sprite2D" parent="."]
 texture = ExtResource("3_d3jlg")
@@ -325,4 +332,13 @@ layout_mode = 2
 layout_mode = 2
 texture = ExtResource("8_jjogd")
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+value = 50.0
+texture_under = ExtResource("9_5u3b6")
+texture_progress = ExtResource("10_3mshq")
+
 [connection signal="item_picked_up" from="YSort/Player" to="." method="_on_player_item_picked_up"]
+[connection signal="performing" from="YSort/Player" to="." method="_on_player_performing"]
+[connection signal="happiness_changed" from="YSort/BoyBarA" to="." method="_on_npc_happiness_changed"]
+[connection signal="timeout" from="YSort/BoyBarA/Timer" to="YSort/BoyBarA" method="_on_timer_timeout"]

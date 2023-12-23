@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal item_picked_up(item)
+signal performing(action)
 
 const SPEED = 100.0
 
@@ -15,9 +16,11 @@ func _physics_process(delta):
 		if item_held != null:
 			if item_held == Item.VIOLIN:
 				$AnimatedSprite2D.play("play_violin")
+				performing.emit("violin")
 				return
 			elif item_held == Item.TAMBURICA:
 				$AnimatedSprite2D.play("play_tamburica")
+				performing.emit("tamburica")
 				return
 	if Input.is_action_just_pressed("pick_up"):
 		# place-holder code for rotating through items

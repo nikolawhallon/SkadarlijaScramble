@@ -1,10 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://cenr6570ntuiu"]
+[gd_scene load_steps=26 format=3 uid="uid://cenr6570ntuiu"]
 
 [ext_resource type="Script" path="res://Scenes/Player.gd" id="1_0vcu3"]
 [ext_resource type="Texture2D" uid="uid://cwpxraqut7lp7" path="res://Assets/Player/player_idle_down_1.png" id="1_hoq5p"]
 [ext_resource type="Texture2D" uid="uid://bdbujvvk3mx7a" path="res://Assets/Player/player_idle_down_2.png" id="2_sxnqm"]
 [ext_resource type="Texture2D" uid="uid://co63x43xvrmvu" path="res://Assets/Player/player_idle_down_3.png" id="3_a7gqk"]
 [ext_resource type="Texture2D" uid="uid://c0oyl7sicmicd" path="res://Assets/Player/player_idle_down_4.png" id="4_nlh37"]
+[ext_resource type="Texture2D" uid="uid://bm5upy8q5didx" path="res://Assets/Player/player_play_violin_1.png" id="6_13vrd"]
+[ext_resource type="Texture2D" uid="uid://bh34qbei2fwjm" path="res://Assets/Player/player_walk_down_1.png" id="6_oln0s"]
+[ext_resource type="Texture2D" uid="uid://dhi8kf4r2alef" path="res://Assets/Player/player_walk_down_2.png" id="7_de15u"]
+[ext_resource type="Texture2D" uid="uid://ctpq3ybq4v7a8" path="res://Assets/Player/player_play_violin_2.png" id="7_ogjem"]
+[ext_resource type="Texture2D" uid="uid://cubpes03r36yv" path="res://Assets/Player/player_walk_down_3.png" id="8_6kbyq"]
+[ext_resource type="Texture2D" uid="uid://c7n2niqrfu0r7" path="res://Assets/Player/player_play_violin_3.png" id="8_ykrqd"]
+[ext_resource type="Texture2D" uid="uid://b68x0bjek7whg" path="res://Assets/Player/player_play_violin_4.png" id="9_crg7u"]
+[ext_resource type="Texture2D" uid="uid://duwvcl46mdu6j" path="res://Assets/Player/player_walk_down_4.png" id="9_rh62h"]
+[ext_resource type="Texture2D" uid="uid://7dlgd1qjw7mm" path="res://Assets/Player/player_play_violin_5.png" id="10_r7g5t"]
+[ext_resource type="Texture2D" uid="uid://174asif50g1y" path="res://Assets/Player/player_walk_down_5.png" id="10_uus80"]
+[ext_resource type="Texture2D" uid="uid://bu5w2gx2d3loq" path="res://Assets/Player/player_play_violin_6.png" id="11_5y7m5"]
+[ext_resource type="Texture2D" uid="uid://cndvya3tihsph" path="res://Assets/Player/player_walk_down_6.png" id="11_8sext"]
+[ext_resource type="Texture2D" uid="uid://bk76xriv1jubs" path="res://Assets/Player/player_play_violin_7.png" id="12_w00xu"]
+[ext_resource type="Texture2D" uid="uid://c6s584ynu4l8p" path="res://Assets/Player/player_play_violin_8.png" id="13_n11xb"]
+[ext_resource type="Texture2D" uid="uid://cq0vpopb2qg0r" path="res://Assets/Player/player_play_violin_9.png" id="14_bao7y"]
+[ext_resource type="Texture2D" uid="uid://dvp83hyo2dddh" path="res://Assets/Player/player_play_violin_10.png" id="15_paa8o"]
+[ext_resource type="Texture2D" uid="uid://b4sflrfr2lano" path="res://Assets/Player/player_play_violin_11.png" id="16_hybdo"]
+[ext_resource type="Texture2D" uid="uid://c1m201b0db7sp" path="res://Assets/Player/player_play_violin_12.png" id="17_yfjkv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f1kno"]
 animations = [{
@@ -24,6 +42,70 @@ animations = [{
 "loop": true,
 "name": &"idle_down",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_13vrd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ogjem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ykrqd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_crg7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_r7g5t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5y7m5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_w00xu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_n11xb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_bao7y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_paa8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_hybdo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_yfjkv")
+}],
+"loop": true,
+"name": &"play_violin",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_oln0s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_de15u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6kbyq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rh62h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_uus80")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8sext")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 15.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n1kxv"]
@@ -33,7 +115,7 @@ script = ExtResource("1_0vcu3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_f1kno")
-animation = &"idle_down"
+animation = &"play_violin"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 12)

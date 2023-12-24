@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnxko870epq5o"]
+
+[ext_resource type="Texture2D" uid="uid://dmhh7o2ua6fcf" path="res://Assets/UI/desire_music.png" id="1_hnaiy"]
+[ext_resource type="Script" path="res://Scenes/DesireBubble.gd" id="2_h2br3"]
+
+[node name="DesireBubble" type="Sprite2D"]
+texture = ExtResource("1_hnaiy")
+script = ExtResource("2_h2br3")

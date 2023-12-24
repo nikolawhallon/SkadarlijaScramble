@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://c7culcggyncin" path="res://Assets/Background/table.png" id="1_j5tro"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mnfnq"]
-radius = 18.0
-height = 50.0
+radius = 20.0
+height = 54.0
 
 [node name="Table" type="StaticBody2D"]
 

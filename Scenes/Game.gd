@@ -15,12 +15,11 @@ func _on_player_item_picked_up(item):
 		$CanvasLayer/Control/MarginContainer/HBoxContainer/TextureRect.texture = load("res://Assets/UI/tamburica_icon.png")
 
 func _on_player_performing(action):
-	if action == "violin":
-		happiness = clamp(happiness + 0.1, 0, 100)
-	elif action == "tamburica":
-		happiness = clamp(happiness + 0.1, 0, 100)
-
-	$CanvasLayer/Control/MarginContainer/HBoxContainer/TextureProgressBar.value = happiness
+	# broadcast this action to all NPCs
+	var npcs = get_tree().get_nodes_in_group("NPC")
+	
+	for npc in npcs:
+		npc.notify_player_performing(action, $YSort/Player.position)
 
 func _on_npc_happiness_changed(amount):
 	happiness = clamp(happiness + amount, 0, 100)

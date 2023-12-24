@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c3ugsc82uesng"]
+[gd_scene load_steps=46 format=3 uid="uid://c3ugsc82uesng"]
 
 [ext_resource type="PackedScene" uid="uid://cenr6570ntuiu" path="res://Scenes/Player.tscn" id="1_i1han"]
 [ext_resource type="Texture2D" uid="uid://iqwbqfe4j6de" path="res://Assets/Background/background_and_foreground.png" id="1_lbq7t"]
@@ -10,7 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://dsbv0xtxjx8mx" path="res://Assets/Background/BoyBarA/boy_bar_a_2.png" id="6_e5io1"]
 [ext_resource type="Texture2D" uid="uid://ch6b3r47s6h71" path="res://Assets/UI/empty_icon.png" id="8_jjogd"]
 [ext_resource type="Texture2D" uid="uid://ch7qmwn5mtdma" path="res://Assets/UI/happiness_bar_under.png" id="9_5u3b6"]
+[ext_resource type="Texture2D" uid="uid://dv74qikfn7mpt" path="res://Assets/Background/BoyTableA/boy_table_a_1.png" id="9_s6vih"]
 [ext_resource type="Texture2D" uid="uid://bpeqnlndhft2" path="res://Assets/UI/happiness_bar_progress.png" id="10_3mshq"]
+[ext_resource type="Texture2D" uid="uid://dsqq2vmluegib" path="res://Assets/Background/GirlTableA/girl_table_a_1.png" id="10_52hl7"]
+[ext_resource type="Texture2D" uid="uid://bfqi2x5654032" path="res://Assets/Background/BoyTableA/boy_table_a_2.png" id="10_q7dc8"]
+[ext_resource type="Texture2D" uid="uid://c4m7lajmdt8wj" path="res://Assets/Background/GirlTableA/girl_table_a_2.png" id="11_nkvtp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ek03w"]
 animations = [{
@@ -28,6 +32,39 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7yhjy"]
 radius = 12.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hnmpc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_s6vih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_q7dc8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wifru"]
+radius = 12.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gdm43"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_52hl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_nkvtp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xku04"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdlry"]
 size = Vector2(175, 20)
@@ -107,22 +144,22 @@ script = ExtResource("1_rtrhr")
 [node name="BackgroundAndForeground" type="Sprite2D" parent="."]
 texture = ExtResource("1_lbq7t")
 
+[node name="Table" parent="." instance=ExtResource("4_4rqbu")]
+position = Vector2(-218, 87)
+
+[node name="Table2" parent="." instance=ExtResource("4_4rqbu")]
+position = Vector2(-113, 84)
+
+[node name="Table3" parent="." instance=ExtResource("4_4rqbu")]
+position = Vector2(-165, 143)
+
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Player" parent="YSort" instance=ExtResource("1_i1han")]
 
-[node name="Table" parent="YSort" instance=ExtResource("4_4rqbu")]
-position = Vector2(-218, 87)
-
-[node name="Table2" parent="YSort" instance=ExtResource("4_4rqbu")]
-position = Vector2(-113, 85)
-
-[node name="Table3" parent="YSort" instance=ExtResource("4_4rqbu")]
-position = Vector2(-165, 143)
-
-[node name="BoyBarA" type="StaticBody2D" parent="YSort"]
-position = Vector2(164, -115)
+[node name="BoyBarA" type="StaticBody2D" parent="YSort" groups=["NPC"]]
+position = Vector2(183, -108)
 script = ExtResource("5_p1klc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/BoyBarA"]
@@ -135,6 +172,36 @@ position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_7yhjy")
 
 [node name="Timer" type="Timer" parent="YSort/BoyBarA"]
+one_shot = true
+
+[node name="BoyTableA" type="StaticBody2D" parent="YSort" groups=["NPC"]]
+position = Vector2(-87, 69.5)
+script = ExtResource("5_p1klc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/BoyTableA"]
+sprite_frames = SubResource("SpriteFrames_hnmpc")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/BoyTableA"]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_wifru")
+
+[node name="Timer" type="Timer" parent="YSort/BoyTableA"]
+one_shot = true
+
+[node name="GirlTableA" type="StaticBody2D" parent="YSort" groups=["NPC"]]
+position = Vector2(-111, 52.5)
+script = ExtResource("5_p1klc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/GirlTableA"]
+sprite_frames = SubResource("SpriteFrames_gdm43")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/GirlTableA"]
+position = Vector2(-1, 14)
+shape = SubResource("CircleShape2D_xku04")
+
+[node name="Timer" type="Timer" parent="YSort/GirlTableA"]
 one_shot = true
 
 [node name="Foreground" type="Sprite2D" parent="."]
@@ -342,3 +409,7 @@ texture_progress = ExtResource("10_3mshq")
 [connection signal="performing" from="YSort/Player" to="." method="_on_player_performing"]
 [connection signal="happiness_changed" from="YSort/BoyBarA" to="." method="_on_npc_happiness_changed"]
 [connection signal="timeout" from="YSort/BoyBarA/Timer" to="YSort/BoyBarA" method="_on_timer_timeout"]
+[connection signal="happiness_changed" from="YSort/BoyTableA" to="." method="_on_npc_happiness_changed"]
+[connection signal="timeout" from="YSort/BoyTableA/Timer" to="YSort/BoyTableA" method="_on_timer_timeout"]
+[connection signal="happiness_changed" from="YSort/GirlTableA" to="." method="_on_npc_happiness_changed"]
+[connection signal="timeout" from="YSort/GirlTableA/Timer" to="YSort/GirlTableA" method="_on_timer_timeout"]

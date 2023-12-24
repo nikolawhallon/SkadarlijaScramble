@@ -4,32 +4,53 @@ signal happiness_changed(amount)
 
 var rng = RandomNumberGenerator.new()
 var desire = null
+var desire_bubble = null
+var timeout_time = 10
+
+var default_happiness_decrement = 0.01
+var happiness_decrement = default_happiness_decrement
+var happiness_increment = 0.1
 
 func _ready():
 	print("Starting Timer")
 	$Timer.start()
 
 func _process(delta):
-	happiness_changed.emit(-0.01)
+	if desire != null:
+		happiness_changed.emit(-happiness_decrement)
+		happiness_decrement = clamp(happiness_decrement + default_happiness_decrement * delta / 30.0, default_happiness_decrement, happiness_increment)
 
 func _on_timer_timeout():
-	print("Timer timed out")
+	if desire_bubble != null:
+		desire_bubble.queue_free()
+		
 	var random_number = rng.randf()
-	if random_number < 0.33:
-		desire = "music"
-	elif random_number < 0.66:
-		desire = "coffee"
-	else:
-		desire = "food"
-	print(desire)
-	# this isn't the right condition, I'm just testing
-	$Timer.start()
+	
+	# short-circuit if we decide the NPC will have no desire for an iteration
+	if random_number < 0.0:
+		desire = null
+		desire_bubble = null
+		$Timer.start(timeout_time)
+		return
+	
+	random_number = rng.randf()
+	desire_bubble = load("res://Scenes/DesireBubble.tscn").instantiate()
+	add_child(desire_bubble)
 
-# I could have the Game relay signals from the Player to all NPCs
-# including the following information:
-# - action being performed
-# - coordinates of the Player
-# then, this script could do a quick check to see if this NPCs
-# desire is being met, increase some happiness counter,
-# signal that to Game, and if the happiness counter reaches a certain point,
-# nullify the desire and restart the Timer for a new desire
+	if random_number < 1.0 / 3.0:
+		desire = "music"
+		desire_bubble.init(-48, "music")
+	elif random_number < 2.0 / 3.0:
+		desire = "coffee"
+		desire_bubble.init(-48, "coffee")
+	elif random_number < 3.0 / 3.0:
+		desire = "food"
+		desire_bubble.init(-48, "food")
+
+	$Timer.start(timeout_time)
+
+func notify_player_performing(action, player_position):
+	if desire == "music" and (action == "violin" or action == "tamburica"):
+		if position.distance_to(player_position) < 100:
+			happiness_decrement = default_happiness_decrement
+			happiness_changed.emit(happiness_increment)

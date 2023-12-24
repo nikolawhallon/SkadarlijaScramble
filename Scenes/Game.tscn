@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c3ugsc82uesng"]
+[gd_scene load_steps=58 format=3 uid="uid://c3ugsc82uesng"]
 
 [ext_resource type="PackedScene" uid="uid://cenr6570ntuiu" path="res://Scenes/Player.tscn" id="1_i1han"]
 [ext_resource type="Texture2D" uid="uid://iqwbqfe4j6de" path="res://Assets/Background/background_and_foreground.png" id="1_lbq7t"]
@@ -15,6 +15,12 @@
 [ext_resource type="Texture2D" uid="uid://dsqq2vmluegib" path="res://Assets/Background/GirlTableA/girl_table_a_1.png" id="10_52hl7"]
 [ext_resource type="Texture2D" uid="uid://bfqi2x5654032" path="res://Assets/Background/BoyTableA/boy_table_a_2.png" id="10_q7dc8"]
 [ext_resource type="Texture2D" uid="uid://c4m7lajmdt8wj" path="res://Assets/Background/GirlTableA/girl_table_a_2.png" id="11_nkvtp"]
+[ext_resource type="Texture2D" uid="uid://d30vwjxd7djil" path="res://Assets/Background/GirlTableB/girl_table_b_1.png" id="12_3s6lr"]
+[ext_resource type="Texture2D" uid="uid://buce1ukabq4l3" path="res://Assets/Background/GirlTableB/girl_table_b_2.png" id="13_86usg"]
+[ext_resource type="Texture2D" uid="uid://byk7rpvnv7f17" path="res://Assets/Background/GirlCornerA/girl_corner_a_1.png" id="14_4kv4v"]
+[ext_resource type="Texture2D" uid="uid://5ljgqx2l1fn1" path="res://Assets/Background/GirlCornerA/girl_corner_a_2.png" id="15_llc7b"]
+[ext_resource type="Texture2D" uid="uid://7kjawivdores" path="res://Assets/Background/GirlTableC/girl_table_c_1.png" id="16_3hcbr"]
+[ext_resource type="Texture2D" uid="uid://cl75v7rkbfusy" path="res://Assets/Background/GirlTableC/girl_table_c_2.png" id="17_dnv04"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ek03w"]
 animations = [{
@@ -27,7 +33,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 2.0
+"speed": 1.9
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7yhjy"]
@@ -44,7 +50,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 3.0
+"speed": 2.9
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wifru"]
@@ -61,10 +67,58 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 2.0
+"speed": 2.1
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xku04"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bim03"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_3s6lr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_86usg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.4
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gliv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1yh7f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_4kv4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_llc7b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.4
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pj8s6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cvpnr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_3hcbr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_dnv04")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.6
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o3wk0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdlry"]
 size = Vector2(175, 20)
@@ -202,6 +256,51 @@ position = Vector2(-1, 14)
 shape = SubResource("CircleShape2D_xku04")
 
 [node name="Timer" type="Timer" parent="YSort/GirlTableA"]
+one_shot = true
+
+[node name="GirlTableB" type="StaticBody2D" parent="YSort" groups=["NPC"]]
+position = Vector2(-245, 74.5)
+script = ExtResource("5_p1klc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/GirlTableB"]
+sprite_frames = SubResource("SpriteFrames_bim03")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/GirlTableB"]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_4gliv")
+
+[node name="Timer" type="Timer" parent="YSort/GirlTableB"]
+one_shot = true
+
+[node name="GirlCornerA" type="StaticBody2D" parent="YSort" groups=["NPC"]]
+position = Vector2(319.5, 207)
+script = ExtResource("5_p1klc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/GirlCornerA"]
+sprite_frames = SubResource("SpriteFrames_1yh7f")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/GirlCornerA"]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_pj8s6")
+
+[node name="Timer" type="Timer" parent="YSort/GirlCornerA"]
+one_shot = true
+
+[node name="GirlTableC" type="StaticBody2D" parent="YSort" groups=["NPC"]]
+position = Vector2(-193, 129.5)
+script = ExtResource("5_p1klc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/GirlTableC"]
+sprite_frames = SubResource("SpriteFrames_cvpnr")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/GirlTableC"]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_o3wk0")
+
+[node name="Timer" type="Timer" parent="YSort/GirlTableC"]
 one_shot = true
 
 [node name="Foreground" type="Sprite2D" parent="."]
@@ -413,3 +512,9 @@ texture_progress = ExtResource("10_3mshq")
 [connection signal="timeout" from="YSort/BoyTableA/Timer" to="YSort/BoyTableA" method="_on_timer_timeout"]
 [connection signal="happiness_changed" from="YSort/GirlTableA" to="." method="_on_npc_happiness_changed"]
 [connection signal="timeout" from="YSort/GirlTableA/Timer" to="YSort/GirlTableA" method="_on_timer_timeout"]
+[connection signal="happiness_changed" from="YSort/GirlTableB" to="." method="_on_npc_happiness_changed"]
+[connection signal="timeout" from="YSort/GirlTableB/Timer" to="YSort/GirlTableB" method="_on_timer_timeout"]
+[connection signal="happiness_changed" from="YSort/GirlCornerA" to="." method="_on_npc_happiness_changed"]
+[connection signal="timeout" from="YSort/GirlCornerA/Timer" to="YSort/GirlCornerA" method="_on_timer_timeout"]
+[connection signal="happiness_changed" from="YSort/GirlTableC" to="." method="_on_npc_happiness_changed"]
+[connection signal="timeout" from="YSort/GirlTableC/Timer" to="YSort/GirlTableC" method="_on_timer_timeout"]

@@ -1,5 +1,10 @@
 extends StaticBody2D
 
+# note that while I've extracted the NPC behavior nicely here,
+# the NPC objects still share so much in common, I ought to do more extraction
+# they only differ in their location, their sprites/animations, and potentially their collision shapes
+# (this is why I have made them all unique StaticBody2Ds in the first place, of course)
+
 signal happiness_changed(amount)
 
 var rng = RandomNumberGenerator.new()
@@ -12,7 +17,6 @@ var happiness_decrement = default_happiness_decrement
 var happiness_increment = 0.1
 
 func _ready():
-	print("Starting Timer")
 	$Timer.start()
 
 func _process(delta):

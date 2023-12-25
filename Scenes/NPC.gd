@@ -12,7 +12,7 @@ var desire = null
 var desire_bubble = null
 var timeout_time = 10
 
-var default_happiness_decrement = 0.01
+var default_happiness_decrement = 0.001
 var happiness_decrement = default_happiness_decrement
 var happiness_increment = 0.1
 
@@ -22,7 +22,7 @@ func _ready():
 func _process(delta):
 	if desire != null:
 		happiness_changed.emit(-happiness_decrement)
-		happiness_decrement = clamp(happiness_decrement + default_happiness_decrement * delta / 30.0, default_happiness_decrement, happiness_increment)
+		happiness_decrement = clamp(happiness_decrement + default_happiness_decrement * delta / 5.0, default_happiness_decrement, happiness_increment)
 
 func _on_timer_timeout():
 	if desire_bubble != null:

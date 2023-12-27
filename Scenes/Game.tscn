@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://c3ugsc82uesng"]
+[gd_scene load_steps=73 format=3 uid="uid://c3ugsc82uesng"]
 
 [ext_resource type="PackedScene" uid="uid://cenr6570ntuiu" path="res://Scenes/Player.tscn" id="1_i1han"]
 [ext_resource type="Texture2D" uid="uid://iqwbqfe4j6de" path="res://Assets/Background/background_and_foreground.png" id="1_lbq7t"]
@@ -23,6 +23,15 @@
 [ext_resource type="Texture2D" uid="uid://cl75v7rkbfusy" path="res://Assets/Background/GirlTableC/girl_table_c_2.png" id="17_dnv04"]
 [ext_resource type="Texture2D" uid="uid://b8741bexr1e35" path="res://Assets/Background/GirlTableD/girl_table_d_1.png" id="18_c24f3"]
 [ext_resource type="Texture2D" uid="uid://wpk64ldqhb5j" path="res://Assets/Background/GirlTableD/girl_table_d_2.png" id="19_hctky"]
+[ext_resource type="Texture2D" uid="uid://d0kthogy7j8g3" path="res://Assets/Background/Janitor/janitor_1.png" id="20_ssh8r"]
+[ext_resource type="Texture2D" uid="uid://bql7hoi1bmwmx" path="res://Assets/Background/Janitor/janitor_2.png" id="21_eptu5"]
+[ext_resource type="Texture2D" uid="uid://7lv8p5cyv4ct" path="res://Assets/Background/Janitor/janitor_3.png" id="22_gqopj"]
+[ext_resource type="Texture2D" uid="uid://bvyvcllelmvhp" path="res://Assets/Background/Janitor/janitor_4.png" id="23_d4p0s"]
+[ext_resource type="Texture2D" uid="uid://c4a0xbb60oguu" path="res://Assets/Background/Janitor/janitor_5.png" id="24_ktsfb"]
+[ext_resource type="Texture2D" uid="uid://wwa7pdv4u8mo" path="res://Assets/Background/Janitor/janitor_6.png" id="25_nlrsm"]
+[ext_resource type="Texture2D" uid="uid://br7kldlmgm1by" path="res://Assets/Background/Janitor/janitor_7.png" id="26_whahs"]
+[ext_resource type="Texture2D" uid="uid://bimjyo188bsrx" path="res://Assets/Background/Janitor/janitor_8.png" id="27_fm6hj"]
+[ext_resource type="Texture2D" uid="uid://bkfs0dfvnyl8i" path="res://Assets/Background/Janitor/janitor_9.png" id="28_cdb5c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ek03w"]
 animations = [{
@@ -137,6 +146,43 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pj8s6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7tlyk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_ssh8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_eptu5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_gqopj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_d4p0s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_ktsfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_nlrsm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_whahs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_fm6hj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_cdb5c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfnrg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdlry"]
 size = Vector2(175, 20)
@@ -334,6 +380,23 @@ position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_pj8s6")
 
 [node name="Timer" type="Timer" parent="YSort/GirlCornerA"]
+one_shot = true
+
+[node name="Janitor" type="StaticBody2D" parent="YSort" groups=["NPC"]]
+position = Vector2(-10, 44)
+script = ExtResource("5_p1klc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/Janitor"]
+position = Vector2(131, -79)
+sprite_frames = SubResource("SpriteFrames_7tlyk")
+autoplay = "default"
+frame = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Janitor"]
+position = Vector2(0, 14)
+shape = SubResource("CircleShape2D_gfnrg")
+
+[node name="Timer" type="Timer" parent="YSort/Janitor"]
 one_shot = true
 
 [node name="Foreground" type="Sprite2D" parent="."]
@@ -553,3 +616,5 @@ texture_progress = ExtResource("10_3mshq")
 [connection signal="timeout" from="YSort/GirlTableD/Timer" to="YSort/GirlTableD" method="_on_timer_timeout"]
 [connection signal="happiness_changed" from="YSort/GirlCornerA" to="." method="_on_npc_happiness_changed"]
 [connection signal="timeout" from="YSort/GirlCornerA/Timer" to="YSort/GirlCornerA" method="_on_timer_timeout"]
+[connection signal="happiness_changed" from="YSort/Janitor" to="." method="_on_npc_happiness_changed"]
+[connection signal="timeout" from="YSort/Janitor/Timer" to="YSort/Janitor" method="_on_timer_timeout"]

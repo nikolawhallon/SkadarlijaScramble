@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://c3ugsc82uesng"]
+[gd_scene load_steps=77 format=3 uid="uid://c3ugsc82uesng"]
 
 [ext_resource type="PackedScene" uid="uid://cenr6570ntuiu" path="res://Scenes/Player.tscn" id="1_i1han"]
 [ext_resource type="Texture2D" uid="uid://iqwbqfe4j6de" path="res://Assets/Background/background_and_foreground.png" id="1_lbq7t"]
@@ -32,6 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://br7kldlmgm1by" path="res://Assets/Background/Janitor/janitor_7.png" id="26_whahs"]
 [ext_resource type="Texture2D" uid="uid://bimjyo188bsrx" path="res://Assets/Background/Janitor/janitor_8.png" id="27_fm6hj"]
 [ext_resource type="Texture2D" uid="uid://bkfs0dfvnyl8i" path="res://Assets/Background/Janitor/janitor_9.png" id="28_cdb5c"]
+[ext_resource type="Texture2D" uid="uid://b4x8ieaem63ut" path="res://Assets/Background/flag.png" id="29_bimhi"]
+[ext_resource type="Texture2D" uid="uid://qe8ktpv0o0nm" path="res://Assets/Background/espresso_machine.png" id="30_shqam"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ek03w"]
 animations = [{
@@ -184,6 +186,13 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfnrg"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0vrwu"]
+radius = 15.0
+height = 45.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7ja8"]
+size = Vector2(25, 54)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdlry"]
 size = Vector2(175, 20)
 
@@ -275,6 +284,7 @@ position = Vector2(-165, 143)
 y_sort_enabled = true
 
 [node name="Player" parent="YSort" instance=ExtResource("1_i1han")]
+position = Vector2(200, 254)
 
 [node name="BoyBarA" type="StaticBody2D" parent="YSort" groups=["NPC"]]
 position = Vector2(183, -108)
@@ -383,11 +393,10 @@ shape = SubResource("CircleShape2D_pj8s6")
 one_shot = true
 
 [node name="Janitor" type="StaticBody2D" parent="YSort" groups=["NPC"]]
-position = Vector2(-10, 44)
+position = Vector2(104, -34)
 script = ExtResource("5_p1klc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/Janitor"]
-position = Vector2(131, -79)
 sprite_frames = SubResource("SpriteFrames_7tlyk")
 autoplay = "default"
 frame = 8
@@ -398,6 +407,28 @@ shape = SubResource("CircleShape2D_gfnrg")
 
 [node name="Timer" type="Timer" parent="YSort/Janitor"]
 one_shot = true
+
+[node name="Flag" type="StaticBody2D" parent="YSort"]
+position = Vector2(5.5, -10.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSort/Flag"]
+texture = ExtResource("29_bimhi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Flag"]
+position = Vector2(0, 28)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0vrwu")
+
+[node name="EspressoMachine" type="StaticBody2D" parent="YSort"]
+position = Vector2(78, -119.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSort/EspressoMachine"]
+texture = ExtResource("30_shqam")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/EspressoMachine"]
+position = Vector2(3, 15)
+rotation = 1.11701
+shape = SubResource("RectangleShape2D_p7ja8")
 
 [node name="Foreground" type="Sprite2D" parent="."]
 texture = ExtResource("3_d3jlg")

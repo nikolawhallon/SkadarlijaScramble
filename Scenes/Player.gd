@@ -5,11 +5,18 @@ signal performing(action)
 
 const SPEED = 100.0
 
+# TODO: try to properly use enums
+# it offers no benefit to be mixing strings and enums
 enum Item {VIOLIN, TAMBURICA}
 var item_held = null
 
 func _ready():
 	$AnimatedSprite2D.play("idle_down")
+
+func external_pickup(kind):
+	if kind == "tamburica":
+		item_held = Item.TAMBURICA
+		item_picked_up.emit("tamburica")
 
 func _physics_process(delta):
 	if Input.is_action_pressed("perform"):
@@ -22,19 +29,7 @@ func _physics_process(delta):
 				$AnimatedSprite2D.play("play_tamburica")
 				performing.emit("tamburica")
 				return
-	if Input.is_action_just_pressed("pick_up"):
-		# place-holder code for rotating through items
-		if item_held == null:
-			item_held = Item.VIOLIN
-			item_picked_up.emit("violin")
-		else:
-			if item_held == Item.VIOLIN:
-				item_held = Item.TAMBURICA
-				item_picked_up.emit("tamburica")
-			elif item_held == Item.TAMBURICA:
-				item_held = Item.VIOLIN
-				item_picked_up.emit("violin")
-				
+
 	var x_direction = Input.get_axis("move_left", "move_right")
 	if x_direction:
 		velocity.x = x_direction

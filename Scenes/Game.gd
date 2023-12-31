@@ -3,7 +3,7 @@ extends Node2D
 var happiness = 50.0
 
 func _ready():
-	pass
+	$YSort/Tamburica/PickUpBubble.player = $YSort/Player
 
 func _process(delta):
 	pass
@@ -19,7 +19,7 @@ func _on_player_performing(action):
 	var npcs = get_tree().get_nodes_in_group("NPC")
 	
 	for npc in npcs:
-		npc.notify_player_performing(action, $YSort/Player.position)
+		npc.notify_player_performing(action, $YSort/Player.global_position)
 
 func _on_npc_happiness_changed(amount):
 	happiness = clamp(happiness + amount, 0, 100)

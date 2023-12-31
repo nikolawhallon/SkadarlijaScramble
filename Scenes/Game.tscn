@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://c3ugsc82uesng"]
+[gd_scene load_steps=82 format=3 uid="uid://c3ugsc82uesng"]
 
 [ext_resource type="PackedScene" uid="uid://cenr6570ntuiu" path="res://Scenes/Player.tscn" id="1_i1han"]
 [ext_resource type="Texture2D" uid="uid://iqwbqfe4j6de" path="res://Assets/Background/background_and_foreground.png" id="1_lbq7t"]
@@ -34,6 +34,13 @@
 [ext_resource type="Texture2D" uid="uid://bkfs0dfvnyl8i" path="res://Assets/Background/Janitor/janitor_9.png" id="28_cdb5c"]
 [ext_resource type="Texture2D" uid="uid://b4x8ieaem63ut" path="res://Assets/Background/flag.png" id="29_bimhi"]
 [ext_resource type="Texture2D" uid="uid://qe8ktpv0o0nm" path="res://Assets/Background/espresso_machine.png" id="30_shqam"]
+[ext_resource type="Texture2D" uid="uid://ckmwx5pilpsnj" path="res://Assets/Background/plants.png" id="31_vihhw"]
+[ext_resource type="Texture2D" uid="uid://dos0ce17h8yo8" path="res://Assets/Background/lamp_post.png" id="34_k45sg"]
+[ext_resource type="Texture2D" uid="uid://curokx8re7j5g" path="res://Assets/Background/tamburica.png" id="36_5y3ad"]
+[ext_resource type="PackedScene" uid="uid://csp6j377ucfkd" path="res://Scenes/PickUpBubble.tscn" id="37_ssx2p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_na67q"]
+size = Vector2(32, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ek03w"]
 animations = [{
@@ -280,6 +287,16 @@ position = Vector2(-113, 84)
 [node name="Table3" parent="." instance=ExtResource("4_4rqbu")]
 position = Vector2(-165, 143)
 
+[node name="Plants" type="StaticBody2D" parent="."]
+position = Vector2(-5.5, -45.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Plants"]
+texture = ExtResource("31_vihhw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plants"]
+rotation = 1.09956
+shape = SubResource("RectangleShape2D_na67q")
+
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -429,6 +446,23 @@ texture = ExtResource("30_shqam")
 position = Vector2(3, 15)
 rotation = 1.11701
 shape = SubResource("RectangleShape2D_p7ja8")
+
+[node name="Tamburica" type="Sprite2D" parent="YSort"]
+position = Vector2(-153.5, -3)
+texture = ExtResource("36_5y3ad")
+
+[node name="PickUpBubble" parent="YSort/Tamburica" instance=ExtResource("37_ssx2p")]
+position = Vector2(0, -30)
+
+[node name="LampPost1" type="Sprite2D" parent="."]
+position = Vector2(-295.5, 105.5)
+texture = ExtResource("34_k45sg")
+
+[node name="LampPost2" type="Sprite2D" parent="."]
+position = Vector2(73.5, 45.5)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("34_k45sg")
 
 [node name="Foreground" type="Sprite2D" parent="."]
 texture = ExtResource("3_d3jlg")

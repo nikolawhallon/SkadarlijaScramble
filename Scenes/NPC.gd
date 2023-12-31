@@ -55,6 +55,6 @@ func _on_timer_timeout():
 
 func notify_player_performing(action, player_position):
 	if desire == "music" and (action == "violin" or action == "tamburica"):
-		if position.distance_to(player_position) < 100:
+		if global_position.distance_to(player_position) < 100:
 			happiness_decrement = default_happiness_decrement
 			happiness_changed.emit(happiness_increment)

@@ -6,7 +6,12 @@ var player = null
 func _ready():
 	if kind == "tamburica":
 		texture = load("res://Assets/UI/pick_up_tamburica.png")
-
+	elif kind == "violin":
+		texture = load("res://Assets/UI/pick_up_violin.png")
+	elif kind == "coffee":
+		texture = load("res://Assets/UI/pick_up_coffee.png")
+	elif kind == "food":
+		texture = load("res://Assets/UI/pick_up_food.png")
 	visible = false
 	
 func _process(_delta):
@@ -18,6 +23,21 @@ func _process(_delta):
 			visible = true
 		else:
 			visible = false
-
-	if visible and Input.is_action_just_pressed("pick_up"):
+	if kind == "violin":
+		if global_position.distance_to(player.global_position) < 70.0 and player.item_held != player.Item.VIOLIN:
+			visible = true
+		else:
+			visible = false
+	elif kind == "coffee":
+		if global_position.distance_to(player.global_position) < 70.0 and player.item_held != player.Item.COFFEE:
+			visible = true
+		else:
+			visible = false
+	elif kind == "food":
+		if global_position.distance_to(player.global_position) < 70.0 and player.item_held != player.Item.FOOD:
+			visible = true
+		else:
+			visible = false
+						
+	if visible and not player.item_just_picked_up and Input.is_action_just_pressed("pick_up"):
 		player.external_pickup(kind)

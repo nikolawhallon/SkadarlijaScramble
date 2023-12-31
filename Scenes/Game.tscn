@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://c3ugsc82uesng"]
+[gd_scene load_steps=83 format=3 uid="uid://c3ugsc82uesng"]
 
 [ext_resource type="PackedScene" uid="uid://cenr6570ntuiu" path="res://Scenes/Player.tscn" id="1_i1han"]
 [ext_resource type="Texture2D" uid="uid://iqwbqfe4j6de" path="res://Assets/Background/background_and_foreground.png" id="1_lbq7t"]
@@ -35,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://b4x8ieaem63ut" path="res://Assets/Background/flag.png" id="29_bimhi"]
 [ext_resource type="Texture2D" uid="uid://qe8ktpv0o0nm" path="res://Assets/Background/espresso_machine.png" id="30_shqam"]
 [ext_resource type="Texture2D" uid="uid://ckmwx5pilpsnj" path="res://Assets/Background/plants.png" id="31_vihhw"]
+[ext_resource type="Texture2D" uid="uid://fdyx618pswoi" path="res://Assets/Background/violin.png" id="34_bcls4"]
 [ext_resource type="Texture2D" uid="uid://dos0ce17h8yo8" path="res://Assets/Background/lamp_post.png" id="34_k45sg"]
 [ext_resource type="Texture2D" uid="uid://curokx8re7j5g" path="res://Assets/Background/tamburica.png" id="36_5y3ad"]
 [ext_resource type="PackedScene" uid="uid://csp6j377ucfkd" path="res://Scenes/PickUpBubble.tscn" id="37_ssx2p"]
@@ -304,7 +305,7 @@ y_sort_enabled = true
 position = Vector2(200, 254)
 
 [node name="BoyBarA" type="StaticBody2D" parent="YSort" groups=["NPC"]]
-position = Vector2(183, -108)
+position = Vector2(195, -102)
 script = ExtResource("5_p1klc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/BoyBarA"]
@@ -447,12 +448,31 @@ position = Vector2(3, 15)
 rotation = 1.11701
 shape = SubResource("RectangleShape2D_p7ja8")
 
+[node name="PickUpBubble" parent="YSort/EspressoMachine" instance=ExtResource("37_ssx2p")]
+position = Vector2(0, -40)
+kind = "coffee"
+
 [node name="Tamburica" type="Sprite2D" parent="YSort"]
 position = Vector2(-153.5, -3)
 texture = ExtResource("36_5y3ad")
 
 [node name="PickUpBubble" parent="YSort/Tamburica" instance=ExtResource("37_ssx2p")]
 position = Vector2(0, -30)
+
+[node name="Violin" type="Sprite2D" parent="YSort"]
+position = Vector2(-124.5, -0.5)
+texture = ExtResource("34_bcls4")
+
+[node name="PickUpBubble" parent="YSort/Violin" instance=ExtResource("37_ssx2p")]
+position = Vector2(0, -30)
+kind = "violin"
+
+[node name="Food" type="Node2D" parent="YSort"]
+position = Vector2(176, -143)
+
+[node name="PickUpBubble" parent="YSort/Food" instance=ExtResource("37_ssx2p")]
+position = Vector2(0, -30)
+kind = "food"
 
 [node name="LampPost1" type="Sprite2D" parent="."]
 position = Vector2(-295.5, 105.5)

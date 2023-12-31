@@ -43,13 +43,13 @@ func _on_timer_timeout():
 
 	if random_number < 1.0 / 3.0:
 		desire = "music"
-		desire_bubble.init(-48, "music")
+		desire_bubble.init(-40, "music")
 	elif random_number < 2.0 / 3.0:
 		desire = "coffee"
-		desire_bubble.init(-48, "coffee")
+		desire_bubble.init(-40, "coffee")
 	elif random_number < 3.0 / 3.0:
 		desire = "food"
-		desire_bubble.init(-48, "food")
+		desire_bubble.init(-40, "food")
 
 	$Timer.start(timeout_time)
 

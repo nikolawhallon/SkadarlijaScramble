@@ -7,8 +7,11 @@ const SPEED = 100.0
 
 # TODO: try to properly use enums
 # it offers no benefit to be mixing strings and enums
-enum Item {VIOLIN, TAMBURICA}
+enum Item {VIOLIN, TAMBURICA, COFFEE, FOOD}
 var item_held = null
+
+# a hack
+var item_just_picked_up = false
 
 func _ready():
 	$AnimatedSprite2D.play("idle_down")
@@ -17,8 +20,20 @@ func external_pickup(kind):
 	if kind == "tamburica":
 		item_held = Item.TAMBURICA
 		item_picked_up.emit("tamburica")
+	elif kind == "violin":
+		item_held = Item.VIOLIN
+		item_picked_up.emit("violin")
+	elif kind == "coffee":
+		item_held = Item.COFFEE
+		item_picked_up.emit("coffee")
+	elif kind == "food":
+		item_held = Item.FOOD
+		item_picked_up.emit("food")
+	item_just_picked_up = true
 
 func _physics_process(delta):
+	item_just_picked_up = false
+	
 	if Input.is_action_pressed("perform"):
 		if item_held != null:
 			if item_held == Item.VIOLIN:

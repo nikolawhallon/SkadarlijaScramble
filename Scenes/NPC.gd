@@ -58,3 +58,11 @@ func notify_player_performing(action, player_position):
 		if global_position.distance_to(player_position) < 100:
 			happiness_decrement = default_happiness_decrement
 			happiness_changed.emit(happiness_increment)
+	if desire == "coffee" and action == "coffee":
+		if global_position.distance_to(player_position) < 100:
+			happiness_decrement = default_happiness_decrement
+			happiness_changed.emit(happiness_increment)
+	if desire == "food" and action == "food":
+		if global_position.distance_to(player_position) < 100:
+			happiness_decrement = default_happiness_decrement
+			happiness_changed.emit(happiness_increment)

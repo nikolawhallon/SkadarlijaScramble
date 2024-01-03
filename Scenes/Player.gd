@@ -11,6 +11,9 @@ enum Item {VIOLIN, TAMBURICA, COFFEE, FOOD}
 var item_held = null
 
 # a hack
+var game_over = false
+
+# a hack
 var item_just_picked_up = false
 
 func _ready():
@@ -32,6 +35,9 @@ func external_pickup(kind):
 	item_just_picked_up = true
 
 func _physics_process(delta):
+	if game_over:
+		return
+
 	item_just_picked_up = false
 	
 	if Input.is_action_pressed("perform"):
@@ -43,6 +49,14 @@ func _physics_process(delta):
 			elif item_held == Item.TAMBURICA:
 				$AnimatedSprite2D.play("play_tamburica")
 				performing.emit("tamburica")
+				return
+			elif item_held == Item.COFFEE:
+				$AnimatedSprite2D.play("serve")
+				performing.emit("coffee")
+				return
+			elif item_held == Item.FOOD:
+				$AnimatedSprite2D.play("serve")
+				performing.emit("food")
 				return
 
 	var x_direction = Input.get_axis("move_left", "move_right")
@@ -72,3 +86,7 @@ func _physics_process(delta):
 		$AnimatedSprite2D.flip_h = true
 	
 	move_and_slide()
+
+func _game_over():
+	game_over = true
+	$AnimatedSprite2D.play("idle_down")

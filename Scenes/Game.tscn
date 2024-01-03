@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://c3ugsc82uesng"]
+[gd_scene load_steps=84 format=3 uid="uid://c3ugsc82uesng"]
 
 [ext_resource type="PackedScene" uid="uid://cenr6570ntuiu" path="res://Scenes/Player.tscn" id="1_i1han"]
 [ext_resource type="Texture2D" uid="uid://iqwbqfe4j6de" path="res://Assets/Background/background_and_foreground.png" id="1_lbq7t"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://fdyx618pswoi" path="res://Assets/Background/violin.png" id="34_bcls4"]
 [ext_resource type="Texture2D" uid="uid://dos0ce17h8yo8" path="res://Assets/Background/lamp_post.png" id="34_k45sg"]
 [ext_resource type="Texture2D" uid="uid://curokx8re7j5g" path="res://Assets/Background/tamburica.png" id="36_5y3ad"]
+[ext_resource type="FontFile" uid="uid://3eiy2ra5oa8y" path="res://Assets/Fonts/monogram.ttf" id="37_rvj5g"]
 [ext_resource type="PackedScene" uid="uid://csp6j377ucfkd" path="res://Scenes/PickUpBubble.tscn" id="37_ssx2p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_na67q"]
@@ -658,6 +659,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="GameOverContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/GameOverContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.807843, 0.2, 0.266667, 1)
+theme_override_colors/font_outline_color = Color(0.12549, 0.00784314, 0.0588235, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("37_rvj5g")
+theme_override_font_sizes/font_size = 32
+text = "       GAME OVER!
+PRESS SPACE TO TRY AGAIN"
+
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 12
@@ -685,6 +711,20 @@ value = 50.0
 texture_under = ExtResource("9_5u3b6")
 texture_progress = ExtResource("10_3mshq")
 
+[node name="CountDown" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.807843, 0.2, 0.266667, 1)
+theme_override_colors/font_outline_color = Color(0.12549, 0.00784314, 0.0588235, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("37_rvj5g")
+theme_override_font_sizes/font_size = 32
+text = "10"
+
+[node name="GameOverTimer" type="Timer" parent="."]
+wait_time = 10.9
+one_shot = true
+
 [connection signal="item_picked_up" from="YSort/Player" to="." method="_on_player_item_picked_up"]
 [connection signal="performing" from="YSort/Player" to="." method="_on_player_performing"]
 [connection signal="happiness_changed" from="YSort/BoyBarA" to="." method="_on_npc_happiness_changed"]
@@ -703,3 +743,4 @@ texture_progress = ExtResource("10_3mshq")
 [connection signal="timeout" from="YSort/GirlCornerA/Timer" to="YSort/GirlCornerA" method="_on_timer_timeout"]
 [connection signal="happiness_changed" from="YSort/Janitor" to="." method="_on_npc_happiness_changed"]
 [connection signal="timeout" from="YSort/Janitor/Timer" to="YSort/Janitor" method="_on_timer_timeout"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]

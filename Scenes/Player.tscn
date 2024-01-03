@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cenr6570ntuiu"]
+[gd_scene load_steps=37 format=3 uid="uid://cenr6570ntuiu"]
 
 [ext_resource type="Script" path="res://Scenes/Player.gd" id="1_0vcu3"]
 [ext_resource type="Texture2D" uid="uid://cwpxraqut7lp7" path="res://Assets/Player/player_idle_down_1.png" id="1_hoq5p"]
@@ -27,6 +27,13 @@
 [ext_resource type="Texture2D" uid="uid://dvp83hyo2dddh" path="res://Assets/Player/player_play_violin_10.png" id="15_paa8o"]
 [ext_resource type="Texture2D" uid="uid://b4sflrfr2lano" path="res://Assets/Player/player_play_violin_11.png" id="16_hybdo"]
 [ext_resource type="Texture2D" uid="uid://c1m201b0db7sp" path="res://Assets/Player/player_play_violin_12.png" id="17_yfjkv"]
+[ext_resource type="Texture2D" uid="uid://ff5bkwt1b1yj" path="res://Assets/Player/player_serve_1.png" id="22_irkas"]
+[ext_resource type="Texture2D" uid="uid://ckvcf1l03kpcb" path="res://Assets/Player/player_serve_2.png" id="23_lje27"]
+[ext_resource type="Texture2D" uid="uid://ieme550cerif" path="res://Assets/Player/player_serve_3.png" id="24_mlw0w"]
+[ext_resource type="Texture2D" uid="uid://d1lb1khxglh8f" path="res://Assets/Player/player_serve_4.png" id="25_j6101"]
+[ext_resource type="Texture2D" uid="uid://by8nv4gmpiong" path="res://Assets/Player/player_serve_5.png" id="26_raxk0"]
+[ext_resource type="Texture2D" uid="uid://b6v8xxxlfhgec" path="res://Assets/Player/player_serve_6.png" id="27_guxj5"]
+[ext_resource type="Texture2D" uid="uid://c1t0mt0j2kwkx" path="res://Assets/Player/player_serve_7.png" id="28_g384u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f1kno"]
 animations = [{
@@ -107,6 +114,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("22_irkas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_lje27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_mlw0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_j6101")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_raxk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_guxj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_g384u")
+}],
+"loop": true,
+"name": &"serve",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("6_oln0s")
 }, {
 "duration": 1.0,
@@ -138,7 +171,7 @@ script = ExtResource("1_0vcu3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_f1kno")
-animation = &"play_tamburica"
+animation = &"serve"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 16)

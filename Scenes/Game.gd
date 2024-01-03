@@ -1,6 +1,7 @@
 extends Node2D
 
 var happiness = 50.0
+var game_over = false
 
 func _ready():
 	$YSort/Tamburica/PickUpBubble.player = $YSort/Player
@@ -9,7 +10,16 @@ func _ready():
 	$YSort/Food/PickUpBubble.player = $YSort/Player
 	
 func _process(delta):
-	pass
+	if game_over and Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
+		
+	# TODO: due to the size of the texture, "0" is actually below the meter
+	if not game_over:
+		if happiness == 0 and $GameOverTimer.is_stopped():
+			$GameOverTimer.start()
+		if not $GameOverTimer.is_stopped():
+			$CanvasLayer/Control/MarginContainer/HBoxContainer/CountDown.visible = true
+			$CanvasLayer/Control/MarginContainer/HBoxContainer/CountDown.text = str(int($GameOverTimer.time_left))
 	
 func _on_player_item_picked_up(item):
 	if item == "violin":
@@ -31,3 +41,9 @@ func _on_player_performing(action):
 func _on_npc_happiness_changed(amount):
 	happiness = clamp(happiness + amount, 0, 100)
 	$CanvasLayer/Control/MarginContainer/HBoxContainer/TextureProgressBar.value = happiness
+
+func _on_game_over_timer_timeout():
+	$CanvasLayer/Control/MarginContainer/HBoxContainer/CountDown.visible = false
+	$YSort/Player._game_over()
+	$CanvasLayer/Control/GameOverContainer.visible = true
+	game_over = true

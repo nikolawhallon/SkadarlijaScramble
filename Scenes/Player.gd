@@ -59,6 +59,10 @@ func _physics_process(delta):
 				performing.emit("food")
 				return
 
+	# another quick hack, yuck
+	if $AnimatedSprite2D.animation == "serve":
+		return
+		
 	var x_direction = Input.get_axis("move_left", "move_right")
 	if x_direction:
 		velocity.x = x_direction
@@ -95,3 +99,5 @@ func _on_animated_sprite_2d_animation_finished():
 	if $AnimatedSprite2D.animation == "serve":
 		item_held = null
 		item_picked_up.emit("")
+		# another quick hack, yuck
+		$AnimatedSprite2D.play("idle_down")

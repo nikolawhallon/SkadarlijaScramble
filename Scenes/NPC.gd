@@ -15,6 +15,8 @@ var timeout_time = 10
 var default_happiness_decrement = 0.001
 var happiness_decrement = default_happiness_decrement
 var happiness_increment = 0.1
+var max_happiness_for_desire = 10.0
+var happiness_for_desire = 0.0
 
 func _ready():
 	$Timer.start()
@@ -24,6 +26,14 @@ func _process(delta):
 		happiness_changed.emit(-happiness_decrement)
 		happiness_decrement = clamp(happiness_decrement + default_happiness_decrement * delta / 5.0, default_happiness_decrement, happiness_increment)
 
+	if happiness_for_desire >= max_happiness_for_desire:
+		desire = null
+		$Timer.start(timeout_time)
+		if desire_bubble != null:
+			desire_bubble.queue_free()
+			desire_bubble = null
+		happiness_for_desire = 0.0
+
 func _on_timer_timeout():
 	if desire_bubble != null:
 		desire_bubble.queue_free()
@@ -31,7 +41,7 @@ func _on_timer_timeout():
 	var random_number = rng.randf()
 	
 	# short-circuit if we decide the NPC will have no desire for an iteration
-	if random_number < 0.0:
+	if random_number < 0.2:
 		desire = null
 		desire_bubble = null
 		$Timer.start(timeout_time)
@@ -51,18 +61,21 @@ func _on_timer_timeout():
 		desire = "food"
 		desire_bubble.init(-40, "food")
 
-	$Timer.start(timeout_time)
+	#$Timer.start(timeout_time)
 
 func notify_player_performing(action, player_position):
 	if desire == "music" and (action == "violin" or action == "tamburica"):
 		if global_position.distance_to(player_position) < 100:
 			happiness_decrement = default_happiness_decrement
 			happiness_changed.emit(happiness_increment)
+			happiness_for_desire += happiness_increment
 	if desire == "coffee" and action == "coffee":
-		if global_position.distance_to(player_position) < 100:
+		if global_position.distance_to(player_position) < 25:
 			happiness_decrement = default_happiness_decrement
-			happiness_changed.emit(happiness_increment)
+			happiness_changed.emit(max_happiness_for_desire)
+			happiness_for_desire += max_happiness_for_desire
 	if desire == "food" and action == "food":
-		if global_position.distance_to(player_position) < 100:
+		if global_position.distance_to(player_position) < 25:
 			happiness_decrement = default_happiness_decrement
-			happiness_changed.emit(happiness_increment)
+			happiness_changed.emit(max_happiness_for_desire)
+			happiness_for_desire += max_happiness_for_desire

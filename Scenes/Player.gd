@@ -90,3 +90,8 @@ func _physics_process(delta):
 func _game_over():
 	game_over = true
 	$AnimatedSprite2D.play("idle_down")
+
+func _on_animated_sprite_2d_animation_finished():
+	if $AnimatedSprite2D.animation == "serve":
+		item_held = null
+		item_picked_up.emit("")

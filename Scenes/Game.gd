@@ -30,6 +30,8 @@ func _on_player_item_picked_up(item):
 		$CanvasLayer/Control/MarginContainer/HBoxContainer/TextureRect.texture = load("res://Assets/UI/coffee_icon.png")
 	elif item == "food":
 		$CanvasLayer/Control/MarginContainer/HBoxContainer/TextureRect.texture = load("res://Assets/UI/food_icon.png")
+	else:
+		$CanvasLayer/Control/MarginContainer/HBoxContainer/TextureRect.texture = load("res://Assets/UI/empty_icon.png")
 
 func _on_player_performing(action):
 	# broadcast this action to all NPCs

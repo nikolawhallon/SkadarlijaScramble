@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://c3ugsc82uesng"]
+[gd_scene load_steps=97 format=3 uid="uid://c3ugsc82uesng"]
 
 [ext_resource type="PackedScene" uid="uid://cenr6570ntuiu" path="res://Scenes/Player.tscn" id="1_i1han"]
 [ext_resource type="Texture2D" uid="uid://iqwbqfe4j6de" path="res://Assets/Background/background_and_foreground.png" id="1_lbq7t"]
@@ -40,6 +40,9 @@
 [ext_resource type="Texture2D" uid="uid://curokx8re7j5g" path="res://Assets/Background/tamburica.png" id="36_5y3ad"]
 [ext_resource type="FontFile" uid="uid://3eiy2ra5oa8y" path="res://Assets/Fonts/monogram.ttf" id="37_rvj5g"]
 [ext_resource type="PackedScene" uid="uid://csp6j377ucfkd" path="res://Scenes/PickUpBubble.tscn" id="37_ssx2p"]
+[ext_resource type="Texture2D" uid="uid://b50lltn77xhy" path="res://Assets/Background/Birds/birds_1.png" id="41_xdiau"]
+[ext_resource type="Texture2D" uid="uid://cx6q8ixtdamwm" path="res://Assets/Background/Birds/birds_2.png" id="42_l0xbo"]
+[ext_resource type="Texture2D" uid="uid://j3rat4q3cfv4" path="res://Assets/Background/cat_spritesheet.png" id="43_lvlx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_na67q"]
 size = Vector2(32, 100)
@@ -273,6 +276,84 @@ radius = 20.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nukrq"]
 size = Vector2(40, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rmwig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("41_xdiau")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_l0xbo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvnvq"]
+atlas = ExtResource("43_lvlx5")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhsvj"]
+atlas = ExtResource("43_lvlx5")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq4m7"]
+atlas = ExtResource("43_lvlx5")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6uco"]
+atlas = ExtResource("43_lvlx5")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blywj"]
+atlas = ExtResource("43_lvlx5")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7he4"]
+atlas = ExtResource("43_lvlx5")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpuna"]
+atlas = ExtResource("43_lvlx5")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtea3"]
+atlas = ExtResource("43_lvlx5")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p5fo8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvnvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhsvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq4m7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6uco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blywj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7he4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpuna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtea3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_rtrhr")
@@ -724,6 +805,16 @@ text = "10"
 [node name="GameOverTimer" type="Timer" parent="."]
 wait_time = 10.9
 one_shot = true
+
+[node name="Birds" type="AnimatedSprite2D" parent="."]
+position = Vector2(-298, 68)
+sprite_frames = SubResource("SpriteFrames_rmwig")
+autoplay = "default"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(70, 78)
+sprite_frames = SubResource("SpriteFrames_p5fo8")
+autoplay = "default"
 
 [connection signal="item_picked_up" from="YSort/Player" to="." method="_on_player_item_picked_up"]
 [connection signal="performing" from="YSort/Player" to="." method="_on_player_performing"]

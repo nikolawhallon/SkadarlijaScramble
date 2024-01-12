@@ -10,6 +10,8 @@ const SPEED = 100.0
 enum Item {VIOLIN, TAMBURICA, COFFEE, FOOD}
 var item_held = null
 
+var can_serve_coffee_or_food = false
+
 # a hack
 var game_over = false
 
@@ -50,11 +52,11 @@ func _physics_process(delta):
 				$AnimatedSprite2D.play("play_tamburica")
 				performing.emit("tamburica")
 				return
-			elif item_held == Item.COFFEE:
+			elif item_held == Item.COFFEE and can_serve_coffee_or_food:
 				$AnimatedSprite2D.play("serve")
 				performing.emit("coffee")
 				return
-			elif item_held == Item.FOOD:
+			elif item_held == Item.FOOD and can_serve_coffee_or_food:
 				$AnimatedSprite2D.play("serve")
 				performing.emit("food")
 				return

@@ -21,6 +21,15 @@ func _process(delta):
 			$CanvasLayer/Control/MarginContainer/HBoxContainer/CountDown.visible = true
 			$CanvasLayer/Control/MarginContainer/HBoxContainer/CountDown.text = str(int($GameOverTimer.time_left))
 	
+	# another hack
+	$YSort/Player.can_serve_coffee_or_food = false
+	var npcs = get_tree().get_nodes_in_group("NPC")
+	for npc in npcs:
+		if npc.desire == "coffee" and npc.global_position.distance_to($YSort/Player.global_position) < 25 and $YSort/Player.item_held == $YSort/Player.Item.COFFEE:
+			$YSort/Player.can_serve_coffee_or_food = true
+		if npc.desire == "food" and npc.global_position.distance_to($YSort/Player.global_position) < 25 and $YSort/Player.item_held == $YSort/Player.Item.FOOD:
+			$YSort/Player.can_serve_coffee_or_food = true		
+
 func _on_player_item_picked_up(item):
 	if item == "violin":
 		$CanvasLayer/Control/MarginContainer/HBoxContainer/TextureRect.texture = load("res://Assets/UI/violin_icon.png")

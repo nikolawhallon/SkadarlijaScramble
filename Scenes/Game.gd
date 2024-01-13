@@ -2,6 +2,7 @@ extends Node2D
 
 var happiness = 50.0
 var game_over = false
+var score = 0
 
 func _ready():
 	$YSort/Tamburica/PickUpBubble.player = $YSort/Player
@@ -12,6 +13,7 @@ func _ready():
 func _process(delta):
 	if game_over and Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
+		return
 		
 	# TODO: due to the size of the texture, "0" is actually below the meter
 	if not game_over:
@@ -58,3 +60,10 @@ func _on_game_over_timer_timeout():
 	$YSort/Player._game_over()
 	$CanvasLayer/Control/GameOverContainer.visible = true
 	game_over = true
+
+func _on_score_timer_timeout():
+	if game_over:
+		return
+	score += 1
+	$CanvasLayer/Control/MarginContainerTop/HBoxContainer/ScoreValue.text = str(score)
+

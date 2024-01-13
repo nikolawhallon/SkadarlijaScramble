@@ -7,6 +7,10 @@ extends StaticBody2D
 
 signal happiness_changed(amount)
 
+@export var can_desire_coffee = true
+@export var can_desire_food = true
+@export var can_desire_music = true
+
 var rng = RandomNumberGenerator.new()
 var desire = null
 var desire_bubble = null
@@ -24,7 +28,7 @@ func _ready():
 func _process(delta):
 	if desire != null:
 		happiness_changed.emit(-happiness_decrement)
-		happiness_decrement = clamp(happiness_decrement + default_happiness_decrement * delta / 5.0, default_happiness_decrement, happiness_increment)
+		happiness_decrement = clamp(happiness_decrement + default_happiness_decrement * delta / 5.0, default_happiness_decrement, 1.5 * happiness_increment)
 
 	if happiness_for_desire >= max_happiness_for_desire:
 		desire = null
@@ -41,7 +45,7 @@ func _on_timer_timeout():
 	var random_number = rng.randf()
 	
 	# short-circuit if we decide the NPC will have no desire for an iteration
-	if random_number < 0.2:
+	if random_number < 0.1:
 		desire = null
 		desire_bubble = null
 		$Timer.start(timeout_time)
@@ -51,15 +55,21 @@ func _on_timer_timeout():
 	desire_bubble = load("res://Scenes/DesireBubble.tscn").instantiate()
 	add_child(desire_bubble)
 
-	if random_number < 1.0 / 3.0:
+	if random_number < 2.0 / 5.0 and can_desire_music:
 		desire = "music"
 		desire_bubble.init(-40, "music")
-	elif random_number < 2.0 / 3.0:
+	elif random_number < 3.5 / 5.0 and can_desire_coffee:
 		desire = "coffee"
 		desire_bubble.init(-40, "coffee")
-	elif random_number < 3.0 / 3.0:
+	elif random_number < 5.0 / 5.0 and can_desire_food:
 		desire = "food"
 		desire_bubble.init(-40, "food")
+	else:
+		# hack - I'm not properly doing the fractions above
+		# taking into account the actual possible list of desires
+		# so if I haven't been able to make a desire bubble by now,
+		# let's drop it
+		desire_bubble.queue_free()
 
 	#$Timer.start(timeout_time)
 

@@ -480,6 +480,8 @@ one_shot = true
 [node name="GirlCornerA" type="StaticBody2D" parent="YSort" groups=["NPC"]]
 position = Vector2(319.5, 207)
 script = ExtResource("5_p1klc")
+can_desire_coffee = false
+can_desire_food = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/GirlCornerA"]
 sprite_frames = SubResource("SpriteFrames_1yh7f")
@@ -495,6 +497,8 @@ one_shot = true
 [node name="Janitor" type="StaticBody2D" parent="YSort" groups=["NPC"]]
 position = Vector2(104, -34)
 script = ExtResource("5_p1klc")
+can_desire_coffee = false
+can_desire_food = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/Janitor"]
 sprite_frames = SubResource("SpriteFrames_7tlyk")
@@ -781,6 +785,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -802,6 +807,38 @@ theme_override_fonts/font = ExtResource("37_rvj5g")
 theme_override_font_sizes/font_size = 32
 text = "10"
 
+[node name="MarginContainerTop" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainerTop"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/Control/MarginContainerTop/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.807843, 0.2, 0.266667, 1)
+theme_override_colors/font_outline_color = Color(0.12549, 0.00784314, 0.0588235, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("37_rvj5g")
+theme_override_font_sizes/font_size = 32
+text = "SCORE:"
+
+[node name="ScoreValue" type="Label" parent="CanvasLayer/Control/MarginContainerTop/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.807843, 0.2, 0.266667, 1)
+theme_override_colors/font_outline_color = Color(0.12549, 0.00784314, 0.0588235, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("37_rvj5g")
+theme_override_font_sizes/font_size = 32
+text = "0
+"
+
 [node name="GameOverTimer" type="Timer" parent="."]
 wait_time = 10.9
 one_shot = true
@@ -815,6 +852,9 @@ autoplay = "default"
 position = Vector2(70, 78)
 sprite_frames = SubResource("SpriteFrames_p5fo8")
 autoplay = "default"
+
+[node name="ScoreTimer" type="Timer" parent="."]
+autostart = true
 
 [connection signal="item_picked_up" from="YSort/Player" to="." method="_on_player_item_picked_up"]
 [connection signal="performing" from="YSort/Player" to="." method="_on_player_performing"]
@@ -835,3 +875,4 @@ autoplay = "default"
 [connection signal="happiness_changed" from="YSort/Janitor" to="." method="_on_npc_happiness_changed"]
 [connection signal="timeout" from="YSort/Janitor/Timer" to="YSort/Janitor" method="_on_timer_timeout"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

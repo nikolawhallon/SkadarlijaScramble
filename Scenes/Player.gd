@@ -10,6 +10,9 @@ const SPEED = 100.0
 enum Item {VIOLIN, TAMBURICA, COFFEE, FOOD}
 var item_held = null
 
+var sfx_collected = preload("res://Assets/Sfx/collected.wav")
+var sfx_served = preload("res://Assets/Sfx/served.wav")
+
 var can_serve_coffee_or_food = false
 
 # a hack
@@ -22,6 +25,10 @@ func _ready():
 	$AnimatedSprite2D.play("idle_down")
 
 func external_pickup(kind):
+	if !$AudioStreamPlayer2D.is_playing():
+		$AudioStreamPlayer2D.stream = sfx_collected
+		$AudioStreamPlayer2D.play()
+	
 	if kind == "tamburica":
 		item_held = Item.TAMBURICA
 		item_picked_up.emit("tamburica")
@@ -55,10 +62,16 @@ func _physics_process(delta):
 			elif item_held == Item.COFFEE and can_serve_coffee_or_food:
 				$AnimatedSprite2D.play("serve")
 				performing.emit("coffee")
+				if !$AudioStreamPlayer2D.is_playing():
+					$AudioStreamPlayer2D.stream = sfx_served
+					$AudioStreamPlayer2D.play()
 				return
 			elif item_held == Item.FOOD and can_serve_coffee_or_food:
 				$AnimatedSprite2D.play("serve")
 				performing.emit("food")
+				if !$AudioStreamPlayer2D.is_playing():
+					$AudioStreamPlayer2D.stream = sfx_served
+					$AudioStreamPlayer2D.play()
 				return
 
 	# another quick hack, yuck

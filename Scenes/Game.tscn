@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://c3ugsc82uesng"]
+[gd_scene load_steps=98 format=3 uid="uid://c3ugsc82uesng"]
 
 [ext_resource type="PackedScene" uid="uid://cenr6570ntuiu" path="res://Scenes/Player.tscn" id="1_i1han"]
 [ext_resource type="Texture2D" uid="uid://iqwbqfe4j6de" path="res://Assets/Background/background_and_foreground.png" id="1_lbq7t"]
@@ -43,6 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://b50lltn77xhy" path="res://Assets/Background/Birds/birds_1.png" id="41_xdiau"]
 [ext_resource type="Texture2D" uid="uid://cx6q8ixtdamwm" path="res://Assets/Background/Birds/birds_2.png" id="42_l0xbo"]
 [ext_resource type="Texture2D" uid="uid://j3rat4q3cfv4" path="res://Assets/Background/cat_spritesheet.png" id="43_lvlx5"]
+[ext_resource type="AudioStream" uid="uid://c2hd46ebuk7eq" path="res://Assets/Music/mala.ogg" id="44_0g1qf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_na67q"]
 size = Vector2(32, 100)
@@ -855,6 +856,11 @@ autoplay = "default"
 
 [node name="ScoreTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("44_0g1qf")
+volume_db = -18.0
+autoplay = true
 
 [connection signal="item_picked_up" from="YSort/Player" to="." method="_on_player_item_picked_up"]
 [connection signal="performing" from="YSort/Player" to="." method="_on_player_performing"]

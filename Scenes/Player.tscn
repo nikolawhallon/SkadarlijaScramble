@@ -184,4 +184,7 @@ limit_top = -301
 limit_right = 365
 limit_bottom = 301
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -6.0
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

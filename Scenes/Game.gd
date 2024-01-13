@@ -66,4 +66,3 @@ func _on_score_timer_timeout():
 		return
 	score += 1
 	$CanvasLayer/Control/MarginContainerTop/HBoxContainer/ScoreValue.text = str(score)
-

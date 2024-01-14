@@ -19,6 +19,9 @@ func _process(delta):
 	if not game_over:
 		if happiness == 0 and $GameOverTimer.is_stopped():
 			$GameOverTimer.start()
+		if not $GameOverTimer.is_stopped() and happiness > 0:
+			$GameOverTimer.stop()
+			$CanvasLayer/Control/MarginContainer/HBoxContainer/CountDown.visible = false
 		if not $GameOverTimer.is_stopped():
 			$CanvasLayer/Control/MarginContainer/HBoxContainer/CountDown.visible = true
 			$CanvasLayer/Control/MarginContainer/HBoxContainer/CountDown.text = str(int($GameOverTimer.time_left))

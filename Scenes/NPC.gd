@@ -22,6 +22,9 @@ var happiness_increment = 0.1
 var max_happiness_for_desire = 10.0
 var happiness_for_desire = 0.0
 
+# last hack
+var player = null
+
 func _ready():
 	$Timer.start()
 
@@ -29,6 +32,13 @@ func _process(delta):
 	if desire != null:
 		happiness_changed.emit(-happiness_decrement)
 		happiness_decrement = clamp(happiness_decrement + default_happiness_decrement * delta / 5.0, default_happiness_decrement, 1.5 * happiness_increment)
+
+		if desire == "coffee" and player.item_held == player.Item.COFFEE and global_position.distance_to(player.global_position) < 25:
+			desire_bubble.action_icon_on("coffee")
+		elif desire == "food" and player.item_held == player.Item.FOOD and global_position.distance_to(player.global_position) < 25:
+			desire_bubble.action_icon_on("food")
+		else:
+			desire_bubble.action_icon_off()
 
 	if happiness_for_desire >= max_happiness_for_desire:
 		desire = null

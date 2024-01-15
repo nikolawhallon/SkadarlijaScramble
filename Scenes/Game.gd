@@ -33,7 +33,8 @@ func _process(delta):
 		if npc.desire == "coffee" and npc.global_position.distance_to($YSort/Player.global_position) < 25 and $YSort/Player.item_held == $YSort/Player.Item.COFFEE:
 			$YSort/Player.can_serve_coffee_or_food = true
 		if npc.desire == "food" and npc.global_position.distance_to($YSort/Player.global_position) < 25 and $YSort/Player.item_held == $YSort/Player.Item.FOOD:
-			$YSort/Player.can_serve_coffee_or_food = true		
+			$YSort/Player.can_serve_coffee_or_food = true
+		npc.player = $YSort/Player
 
 func _on_player_item_picked_up(item):
 	if item == "violin":

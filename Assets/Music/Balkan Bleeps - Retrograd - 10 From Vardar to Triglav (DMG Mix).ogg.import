@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://uxid83icdqmg"
+path="res://.godot/imported/Balkan Bleeps - Retrograd - 10 From Vardar to Triglav (DMG Mix).ogg-b5be25d678f4ef5b74def66de3014859.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Music/Balkan Bleeps - Retrograd - 10 From Vardar to Triglav (DMG Mix).ogg"
+dest_files=["res://.godot/imported/Balkan Bleeps - Retrograd - 10 From Vardar to Triglav (DMG Mix).ogg-b5be25d678f4ef5b74def66de3014859.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

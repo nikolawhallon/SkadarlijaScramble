@@ -21,10 +21,10 @@ func _process(delta):
 			$GameOverTimer.start()
 		if not $GameOverTimer.is_stopped() and happiness > 0:
 			$GameOverTimer.stop()
-			$CanvasLayer/Control/MarginContainer/HBoxContainer/CountDown.visible = false
+			$CanvasLayer/Control/MarginContainerCountDown/CountDown.visible = false
 		if not $GameOverTimer.is_stopped():
-			$CanvasLayer/Control/MarginContainer/HBoxContainer/CountDown.visible = true
-			$CanvasLayer/Control/MarginContainer/HBoxContainer/CountDown.text = str(int($GameOverTimer.time_left))
+			$CanvasLayer/Control/MarginContainerCountDown/CountDown.visible = true
+			$CanvasLayer/Control/MarginContainerCountDown/CountDown.text = str(int($GameOverTimer.time_left))
 	
 	# another hack
 	$YSort/Player.can_serve_coffee_or_food = false
@@ -38,15 +38,15 @@ func _process(delta):
 
 func _on_player_item_picked_up(item):
 	if item == "violin":
-		$CanvasLayer/Control/MarginContainer/HBoxContainer/TextureRect.texture = load("res://Assets/UI/violin_icon.png")
+		$CanvasLayer/Control/MarginContainerItem/TextureRect.texture = load("res://Assets/UI/violin_icon.png")
 	elif item == "tamburica":
-		$CanvasLayer/Control/MarginContainer/HBoxContainer/TextureRect.texture = load("res://Assets/UI/tamburica_icon.png")
+		$CanvasLayer/Control/MarginContainerItem/TextureRect.texture = load("res://Assets/UI/tamburica_icon.png")
 	elif item == "coffee":
-		$CanvasLayer/Control/MarginContainer/HBoxContainer/TextureRect.texture = load("res://Assets/UI/coffee_icon.png")
+		$CanvasLayer/Control/MarginContainerItem/TextureRect.texture = load("res://Assets/UI/coffee_icon.png")
 	elif item == "food":
-		$CanvasLayer/Control/MarginContainer/HBoxContainer/TextureRect.texture = load("res://Assets/UI/food_icon.png")
+		$CanvasLayer/Control/MarginContainerItem/TextureRect.texture = load("res://Assets/UI/food_icon.png")
 	else:
-		$CanvasLayer/Control/MarginContainer/HBoxContainer/TextureRect.texture = load("res://Assets/UI/empty_icon.png")
+		$CanvasLayer/Control/MarginContainerItem/TextureRect.texture = load("res://Assets/UI/empty_icon.png")
 
 func _on_player_performing(action):
 	# broadcast this action to all NPCs
@@ -60,7 +60,7 @@ func _on_npc_happiness_changed(amount):
 	$CanvasLayer/Control/MarginContainer/HBoxContainer/TextureProgressBar.value = happiness
 
 func _on_game_over_timer_timeout():
-	$CanvasLayer/Control/MarginContainer/HBoxContainer/CountDown.visible = false
+	$CanvasLayer/Control/MarginContainerCountDown/CountDown.visible = false
 	$YSort/Player._game_over()
 	$CanvasLayer/Control/GameOverContainer.visible = true
 	game_over = true
@@ -70,3 +70,47 @@ func _on_score_timer_timeout():
 		return
 	score += 1
 	$CanvasLayer/Control/MarginContainerTop/HBoxContainer/ScoreValue.text = str(score)
+
+"res://Assets/Music/Balkan Bleeps - Retrograd - 06 Pico Pico Piccolina (DMG Mix).ogg"
+
+var song_index = 0
+var songs = [
+	{ 
+		"name": "Pico Pico Piccolina",
+		"album": "Retrograd",
+		"artist": "Balkan Bleeps",
+		"stream": preload("res://Assets/Music/Balkan Bleeps - Retrograd - 06 Pico Pico Piccolina (DMG Mix).ogg")
+	},
+	{ 
+		"name": "Over There",
+		"album": "Retrograd",
+		"artist": "Balkan Bleeps",
+		"stream": preload("res://Assets/Music/Balkan Bleeps - Retrograd - 07 Over There (DMG Mix).ogg")
+	},
+	{ 
+		"name": "Autumn Leaves",
+		"album": "Retrograd",
+		"artist": "Balkan Bleeps",
+		"stream": preload("res://Assets/Music/Balkan Bleeps - Retrograd - 08 Autumn Leaves (DMG Mix).ogg")
+	},
+	{ 
+		"name": "Before Dawn",
+		"album": "Retrograd",
+		"artist": "Balkan Bleeps",
+		"stream": preload("res://Assets/Music/Balkan Bleeps - Retrograd - 09 Before Dawn (DMG Mix).ogg")
+	},
+	{ 
+		"name": "From Vardar to Triglav",
+		"album": "Retrograd",
+		"artist": "Balkan Bleeps",
+		"stream": preload("res://Assets/Music/Balkan Bleeps - Retrograd - 10 From Vardar to Triglav (DMG Mix).ogg")
+	},
+]
+
+func _on_audio_stream_player_finished():
+	if song_index + 1 >= songs.size():
+		song_index = 0
+	else:
+		song_index += 1
+	$AudioStreamPlayer.stream = songs[song_index]["stream"]
+	$AudioStreamPlayer.play()

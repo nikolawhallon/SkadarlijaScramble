@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bdqqpgd6ya81u"
+path="res://.godot/imported/Balkan Bleeps - Retrograd - 07 Over There (DMG Mix).ogg-c227f63c932d5b4f7cbd569c914ac3e2.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Music/Balkan Bleeps - Retrograd - 07 Over There (DMG Mix).ogg"
+dest_files=["res://.godot/imported/Balkan Bleeps - Retrograd - 07 Over There (DMG Mix).ogg-c227f63c932d5b4f7cbd569c914ac3e2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

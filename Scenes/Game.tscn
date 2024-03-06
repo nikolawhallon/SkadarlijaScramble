@@ -38,12 +38,12 @@
 [ext_resource type="Texture2D" uid="uid://fdyx618pswoi" path="res://Assets/Background/violin.png" id="34_bcls4"]
 [ext_resource type="Texture2D" uid="uid://dos0ce17h8yo8" path="res://Assets/Background/lamp_post.png" id="34_k45sg"]
 [ext_resource type="Texture2D" uid="uid://curokx8re7j5g" path="res://Assets/Background/tamburica.png" id="36_5y3ad"]
-[ext_resource type="FontFile" uid="uid://3eiy2ra5oa8y" path="res://Assets/Fonts/monogram.ttf" id="37_rvj5g"]
 [ext_resource type="PackedScene" uid="uid://csp6j377ucfkd" path="res://Scenes/PickUpBubble.tscn" id="37_ssx2p"]
+[ext_resource type="FontFile" uid="uid://baargldfq1ank" path="res://Assets/Fonts/kongtext.ttf" id="41_e0fxq"]
 [ext_resource type="Texture2D" uid="uid://b50lltn77xhy" path="res://Assets/Background/Birds/birds_1.png" id="41_xdiau"]
 [ext_resource type="Texture2D" uid="uid://cx6q8ixtdamwm" path="res://Assets/Background/Birds/birds_2.png" id="42_l0xbo"]
 [ext_resource type="Texture2D" uid="uid://j3rat4q3cfv4" path="res://Assets/Background/cat_spritesheet.png" id="43_lvlx5"]
-[ext_resource type="AudioStream" uid="uid://c2hd46ebuk7eq" path="res://Assets/Music/mala.ogg" id="44_0g1qf"]
+[ext_resource type="AudioStream" uid="uid://drh5oo7ekpttd" path="res://Assets/Music/Balkan Bleeps - Retrograd - 06 Pico Pico Piccolina (DMG Mix).ogg" id="44_irns6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_na67q"]
 size = Vector2(32, 100)
@@ -765,8 +765,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.807843, 0.2, 0.266667, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.00784314, 0.0588235, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("37_rvj5g")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("41_e0fxq")
+theme_override_font_sizes/font_size = 8
 text = "       GAME OVER!
 PRESS SPACE TO TRY AGAIN"
 
@@ -788,25 +788,11 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/MarginContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("8_jjogd")
-
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control/MarginContainer/HBoxContainer"]
 layout_mode = 2
 value = 50.0
 texture_under = ExtResource("9_5u3b6")
 texture_progress = ExtResource("10_3mshq")
-
-[node name="CountDown" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(0.807843, 0.2, 0.266667, 1)
-theme_override_colors/font_outline_color = Color(0.12549, 0.00784314, 0.0588235, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("37_rvj5g")
-theme_override_font_sizes/font_size = 32
-text = "10"
 
 [node name="MarginContainerTop" type="MarginContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -826,8 +812,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.807843, 0.2, 0.266667, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.00784314, 0.0588235, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("37_rvj5g")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("41_e0fxq")
+theme_override_font_sizes/font_size = 8
 text = "SCORE:"
 
 [node name="ScoreValue" type="Label" parent="CanvasLayer/Control/MarginContainerTop/HBoxContainer"]
@@ -835,10 +821,52 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.807843, 0.2, 0.266667, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.00784314, 0.0588235, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("37_rvj5g")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("41_e0fxq")
+theme_override_font_sizes/font_size = 8
 text = "0
 "
+
+[node name="MarginContainerCountDown" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 12.0
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="CountDown" type="Label" parent="CanvasLayer/Control/MarginContainerCountDown"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.807843, 0.2, 0.266667, 1)
+theme_override_colors/font_outline_color = Color(0.12549, 0.00784314, 0.0588235, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("41_e0fxq")
+theme_override_font_sizes/font_size = 16
+text = "10"
+
+[node name="MarginContainerItem" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/MarginContainerItem"]
+layout_mode = 2
+texture = ExtResource("8_jjogd")
 
 [node name="GameOverTimer" type="Timer" parent="."]
 wait_time = 10.9
@@ -858,7 +886,7 @@ autoplay = "default"
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("44_0g1qf")
+stream = ExtResource("44_irns6")
 volume_db = -18.0
 autoplay = true
 
@@ -882,3 +910,4 @@ autoplay = true
 [connection signal="timeout" from="YSort/Janitor/Timer" to="YSort/Janitor" method="_on_timer_timeout"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

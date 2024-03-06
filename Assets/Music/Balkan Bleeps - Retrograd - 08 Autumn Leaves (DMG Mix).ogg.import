@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dpw18fikaoyf7"
+path="res://.godot/imported/Balkan Bleeps - Retrograd - 08 Autumn Leaves (DMG Mix).ogg-3e28690c6eb28b450306cd5d42a8a583.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Music/Balkan Bleeps - Retrograd - 08 Autumn Leaves (DMG Mix).ogg"
+dest_files=["res://.godot/imported/Balkan Bleeps - Retrograd - 08 Autumn Leaves (DMG Mix).ogg-3e28690c6eb28b450306cd5d42a8a583.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

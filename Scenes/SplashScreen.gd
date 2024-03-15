@@ -4,8 +4,8 @@ var game_scene = preload("res://Scenes/Game.tscn").instantiate()
 
 # uncomment to special full-screen browser builds
 # I do this in order to get these Godot 4 games working on Raspberry Pi
-#func _input(event):
-#	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+func _input(event):
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("start"):

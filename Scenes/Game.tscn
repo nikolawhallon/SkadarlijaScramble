@@ -746,7 +746,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GameOverContainer" type="MarginContainer" parent="CanvasLayer/Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -761,14 +760,15 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/GameOverContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.807843, 0.2, 0.266667, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.00784314, 0.0588235, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("41_e0fxq")
 theme_override_font_sizes/font_size = 8
-text = "       GAME OVER!
-PRESS SPACE TO TRY AGAIN"
+text = "      GAME OVER!
+PRESS A/B TO TRY AGAIN"
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -779,10 +779,10 @@ anchor_bottom = 1.0
 offset_top = -32.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
 layout_mode = 2
@@ -799,10 +799,10 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainerTop"]
 layout_mode = 2
@@ -835,10 +835,10 @@ offset_left = -20.0
 offset_right = 12.0
 offset_bottom = 16.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="CountDown" type="Label" parent="CanvasLayer/Control/MarginContainerCountDown"]
 visible = false
@@ -859,10 +859,10 @@ anchor_right = 1.0
 offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/MarginContainerItem"]
 layout_mode = 2

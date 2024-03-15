@@ -5,13 +5,13 @@ var player = null
 
 func _ready():
 	if kind == "tamburica":
-		texture = load("res://Assets/UI/pick_up_tamburica.png")
+		texture = load("res://Assets/UI/pick_up_tamburica_gamepad.png")
 	elif kind == "violin":
-		texture = load("res://Assets/UI/pick_up_violin.png")
+		texture = load("res://Assets/UI/pick_up_violin_gamepad.png")
 	elif kind == "coffee":
-		texture = load("res://Assets/UI/pick_up_coffee.png")
+		texture = load("res://Assets/UI/pick_up_coffee_gamepad.png")
 	elif kind == "food":
-		texture = load("res://Assets/UI/pick_up_food.png")
+		texture = load("res://Assets/UI/pick_up_food_gamepad.png")
 	visible = false
 	
 func _process(_delta):

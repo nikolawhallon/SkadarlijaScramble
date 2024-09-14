@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://c3ugsc82uesng"]
+[gd_scene load_steps=99 format=3 uid="uid://c3ugsc82uesng"]
 
 [ext_resource type="PackedScene" uid="uid://cenr6570ntuiu" path="res://Scenes/Player.tscn" id="1_i1han"]
 [ext_resource type="Texture2D" uid="uid://iqwbqfe4j6de" path="res://Assets/Background/background_and_foreground.png" id="1_lbq7t"]
@@ -44,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://cx6q8ixtdamwm" path="res://Assets/Background/Birds/birds_2.png" id="42_l0xbo"]
 [ext_resource type="Texture2D" uid="uid://j3rat4q3cfv4" path="res://Assets/Background/cat_spritesheet.png" id="43_lvlx5"]
 [ext_resource type="AudioStream" uid="uid://drh5oo7ekpttd" path="res://Assets/Music/Balkan Bleeps - Retrograd - 06 Pico Pico Piccolina (DMG Mix).ogg" id="44_irns6"]
+[ext_resource type="Script" path="res://Scenes/Websocket.gd" id="45_f486e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_na67q"]
 size = Vector2(32, 100)
@@ -890,6 +891,9 @@ stream = ExtResource("44_irns6")
 volume_db = -18.0
 autoplay = true
 
+[node name="Websocket" type="Node" parent="."]
+script = ExtResource("45_f486e")
+
 [connection signal="item_picked_up" from="YSort/Player" to="." method="_on_player_item_picked_up"]
 [connection signal="performing" from="YSort/Player" to="." method="_on_player_performing"]
 [connection signal="happiness_changed" from="YSort/BoyBarA" to="." method="_on_npc_happiness_changed"]
@@ -911,3 +915,4 @@ autoplay = true
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="event_received" from="Websocket" to="." method="_on_Websocket_event_received"]

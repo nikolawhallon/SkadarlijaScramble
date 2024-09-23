@@ -120,3 +120,5 @@ func _on_audio_stream_player_finished():
 func _on_Websocket_event_received(event):
 	print("handling event")
 	print(event)
+	if event == "LicitarCollected":
+		_on_npc_happiness_changed(10.0)

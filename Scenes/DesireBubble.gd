@@ -24,9 +24,9 @@ func init(y_position_offset, kind):
 # note: hacks all the way down
 func action_icon_on(kind):
 	if kind == "coffee":
-		texture = load("res://Assets/UI/serve_coffee.png")
+		texture = load("res://Assets/UI/serve_coffee_gamepad.png")
 	if kind == "food":
-		texture = load("res://Assets/UI/serve_food.png")
+		texture = load("res://Assets/UI/serve_food_gamepad.png")
 
 func action_icon_off():
 	texture = default_texture

@@ -2,7 +2,7 @@ extends Node
 
 signal event_received
 
-var websocket_url = "ws://127.0.0.1:5000"
+var websocket_url = "ws://192.168.1.10:5000"
 
 var socket = WebSocketPeer.new()
 

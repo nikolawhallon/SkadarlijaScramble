@@ -43,6 +43,7 @@ func _on_player_item_picked_up(item):
 		$CanvasLayer/Control/MarginContainerItem/TextureRect.texture = load("res://Assets/UI/tamburica_icon.png")
 	elif item == "coffee":
 		$CanvasLayer/Control/MarginContainerItem/TextureRect.texture = load("res://Assets/UI/coffee_icon.png")
+		$Websocket.send_event("CoffeeCollected")
 	elif item == "food":
 		$CanvasLayer/Control/MarginContainerItem/TextureRect.texture = load("res://Assets/UI/food_icon.png")
 	else:
@@ -114,3 +115,10 @@ func _on_audio_stream_player_finished():
 		song_index += 1
 	$AudioStreamPlayer.stream = songs[song_index]["stream"]
 	$AudioStreamPlayer.play()
+
+
+func _on_Websocket_event_received(event):
+	print("handling event")
+	print(event)
+	if event == "LicitarCollected":
+		_on_npc_happiness_changed(10.0)
